@@ -10,6 +10,17 @@
 
 ## Cài Đặt & Chạy
 
+### Clone Repository
+```bash
+# Clone repository từ GitHub
+git clone https://github.com/bichle04/flashcard-app.git
+
+# Di chuyển vào thư mục dự án
+cd flashcard-app
+```
+
+### Cài Đặt và Chạy Dự Án
+
 1. **Cài đặt dependencies:**
    ```bash
    npm install
