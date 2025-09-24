@@ -1,0 +1,268 @@
+.flashcard-container {
+  perspective: 1000px;
+  width: 100%;
+  max-width: 384px;
+  margin: 0 auto 16px;
+}
+
+.flashcard {
+  position: relative;
+  width: 100%;
+  height: 256px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.7s ease;
+}
+
+.flashcard.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backface-visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.flashcard-face:hover {
+  border-color: #9ca3af;
+}
+
+.flashcard-face.back {
+  background-color: #f9fafb;
+  transform: rotateY(180deg);
+}
+
+.flashcard-content {
+  text-align: center;
+  width: 100%;
+}
+
+.flashcard-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 16px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.flashcard-subtitle {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.flashcard-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.flashcard-action-button {
+  background-color: white;
+  border: 1px solid #d1d5db;
+  padding: 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.flashcard-action-button:hover {
+  background-color: #f9fafb;
+  transform: translateY(-2px);
+}
+
+.flashcard-edit-button {
+  color: #6b7280;
+}
+
+.flashcard-edit-button:hover {
+  background-color: #f3f4f6;
+}
+
+.flashcard-delete-button {
+  color: #ef4444;
+  border-color: #fecaca;
+}
+
+.flashcard-delete-button:hover {
+  background-color: #fef2f2;
+}
+
+/* Quiz Mode Specific Styles */
+.flashcard-quiz-mode .flashcard-face {
+  cursor: pointer;
+}
+
+.flashcard-quiz-mode .flashcard-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .flashcard {
+    height: 200px;
+  }
+  
+  .flashcard-face {
+    padding: 16px;
+  }
+  
+  .flashcard-title {
+    font-size: 1.125rem;
+  }
+  
+  .flashcard-actions {
+    margin-top: 12px;
+  }
+}
+
+/* Additional 3D Effects */
+.flashcard-face::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+/* Smooth card entrance animation */
+.flashcard-container.animate-entrance {
+  animation: cardEntrance 0.6s ease-out;
+}
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Custom animations */
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-slide-in-top {
+  animation: slideInFromTop 0.5s ease-out;
+}
+
+.animate-slide-in-bottom {
+  animation: slideInFromBottom 0.5s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.animate-pulse-hover:hover {
+  animation: pulse 0.3s ease-in-out;
+}
+
+/* PWA Status Indicator */
+.pwa-indicator {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+/* Responsive grid improvements */
+@media (max-width: 768px) {
+  .flashcard-container {
+    max-width: 100%;
+    margin: 0 0 1rem 0;
+  }
+}
+
+/* Loading spinner */
+.loading-spinner {
+  border: 3px solid #f1f5f9;
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error state styles */
+.error-message {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+/* Success state styles */
+.success-message {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #16a34a;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
